@@ -498,7 +498,7 @@ class BaseApiClient:
             await self._update_last_token_cookie(response)
 
         if (
-            token_cookie := response.cookies.get("TOKEN")
+            token_cookie := response.cookies.get("TOKEN") or response.cookies.get("UOS_TOKEN")
         ) and token_cookie != self._last_token_cookie:
             self._last_token_cookie = token_cookie
             if self.store_sessions:
